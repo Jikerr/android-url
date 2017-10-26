@@ -1,7 +1,10 @@
 package org.zhdev.dao.repository;
 
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.zhdev.entity.ServiceUrl;
+
+import java.util.List;
 
 /**
  * @Author: zh
@@ -10,4 +13,12 @@ import org.zhdev.entity.ServiceUrl;
  * @Modified By :
  */
 public interface UrlServiceRepository extends CrudRepository<ServiceUrl,Long> {
+
+
+    @Query("from ServiceUrl order by updateDate desc")
+    public List<ServiceUrl> list();
+
 }
+
+
+

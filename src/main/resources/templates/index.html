@@ -79,11 +79,11 @@
                     <i class="fa fa-times"></i>
                     <div class="square"></div>
                     <h2 class="templatemo-inline-block">增加一个地址</h2>
-                        <div style="float: right;">
-                            <button type="button" class="btn btn-default" aria-label="Left Align">
-                                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-                            </button>
-                        </div>
+                    <div style="float: right;">
+                        <button type="button" class="btn btn-default" aria-label="Left Align">
+                            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                        </button>
+                    </div>
                     <hr>
                     <p>Works on all major browsers. IE 10+. Visual Admin is <a
                             href="http://www.templatemo.com/tag/admin" target="_parent">free responsive admin
@@ -102,30 +102,32 @@
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-6 form-group">
-                            <div>
-                                <label class="control-label templatemo-block">什么设备 ?</label>
-                                <div class="templatemo-block margin-bottom-5">
-                                    <input type="radio" name="deviceType-radio" id="r1" value="android" checked>
-                                    <label for="r1" class="font-weight-400"><span></span>Android</label>
-                                </div>
-                                <div class="templatemo-block margin-bottom-5">
-                                    <input type="radio" name="deviceType-radio" id="r2" value="ios">
-                                    <label for="r2" class="font-weight-400"><span></span>IOS</label>
-                                </div>
-                                <div class="templatemo-block margin-bottom-5">
-                                    <input type="radio" name="deviceType-radio" id="r3" value="other">
-                                    <label for="r3" class="font-weight-400"><span></span>其他</label>
-                                </div>
+                        <div>
+                            <label class="control-label templatemo-block">什么设备 ?</label>
+                            <div class="templatemo-block margin-bottom-5">
+                                <input type="radio" name="deviceType-radio" id="r1" value="Android" checked>
+                                <label for="r1" class="font-weight-400"><span></span>Android</label>
                             </div>
+                            <div class="templatemo-block margin-bottom-5">
+                                <input type="radio" name="deviceType-radio" id="r2" value="IOS">
+                                <label for="r2" class="font-weight-400"><span></span>IOS</label>
+                            </div>
+                            <div class="templatemo-block margin-bottom-5">
+                                <input type="radio" name="deviceType-radio" id="r3" value="其他">
+                                <label for="r3" class="font-weight-400"><span></span>其他</label>
+                            </div>
+                        </div>
                     </div>
                     <div class="form-group text-right">
-                        <button type="submit" class="templatemo-blue-button" onclick="insertServiceUrl()">Submit</button>
+                        <button type="submit" class="templatemo-blue-button" onclick="insertServiceUrl()">Submit
+                        </button>
                         <button type="reset" class="templatemo-white-button" onclick="resetInsert()">Reset</button>
                     </div>
                     <p>Nunc placerat purus eu tincidunt consequat. Lorem ipsum dolor sit amet, consectetur adipiscing
                         elit. Phasellus dapibus nulla quis risus auctor, non placerat augue consectetur. Fusce mi lacus,
                         semper sit amet mattis eu.</p>
                 </div>
+
                 <div class="templatemo-content-widget white-bg col-1 text-center">
                     <i class="fa fa-times"></i>
                     <h2 class="text-uppercase">Maris</h2>
@@ -152,7 +154,7 @@
                 </div>
             </div>
             <div class="templatemo-flex-row flex-content-row">
-                <div class='col-1'  id="widget-url-list">
+                <div class='col-1' id="widget-url-list">
 
                 </div>
                 <div class="col-1">
@@ -168,39 +170,11 @@
                                     <td>支持类型</td>
                                     <td>接口ROOT</td>
                                     <td>更新时间</td>
+                                    <td>操作</td>
                                 </tr>
                                 </thead>
                                 <tbody id="urlservice-list-tbody">
-                                <tr>
-                                    <td>1.</td>
-                                    <td>John</td>
-                                    <td>Smith</td>
-                                    <td>@jS</td>
-                                </tr>
-                                <tr>
-                                    <td>2.</td>
-                                    <td>Bill</td>
-                                    <td>Jones</td>
-                                    <td>@bJ</td>
-                                </tr>
-                                <tr>
-                                    <td>3.</td>
-                                    <td>Mary</td>
-                                    <td>James</td>
-                                    <td>@mJ</td>
-                                </tr>
-                                <tr>
-                                    <td>4.</td>
-                                    <td>Steve</td>
-                                    <td>Bride</td>
-                                    <td>@sB</td>
-                                </tr>
-                                <tr>
-                                    <td>5.</td>
-                                    <td>Paul</td>
-                                    <td>Richard</td>
-                                    <td>@pR</td>
-                                </tr>
+
                                 </tbody>
                             </table>
                         </div>
@@ -235,6 +209,7 @@
 <!-- JS -->
 <script src="/js/jquery-1.11.2.min.js"></script>
 <script src="/js/toastr.js"></script> <!-- jQuery -->
+<script src="/layer/layer.js"></script> <!-- jQuery Layer -->
 <script src="/js/jquery-migrate-1.2.1.min.js"></script> <!--  jQuery Migrate Plugin -->
 <script type="text/javascript" src="/js/templatemo-script.js"></script>      <!-- Templatemo Script -->
 <script type="text/javascript">
@@ -243,7 +218,6 @@
     });
 
     function initUrlServiceList() {
-
         $.ajax({
             url: 'list-url',
             type: 'POST', //GET
@@ -260,15 +234,15 @@
 
                 for (var i = 0; i < data.length; i++) {
                     var obj = data[i];
-                    var row = "<tr><td>" + obj.id + "</td><td>" + obj.deviceType + "</td><td>" + obj.url + "</td><td>" + obj.updateTime + "</td></tr>";
+                    var row = "<tr><td>" + obj.id + "</td><td>" + obj.deviceType + "</td><td>" + obj.url + "</td><td>" + obj.updateTime + "</td><td><button onclick='deleteServiceUrl(" + obj.id + ")'>删除</button><button onclick='alertUpdateWindow(" + obj.id + ")'>编辑</button></td></tr>";
 
                     $("#urlservice-list-tbody").append(row);
 
-                    var template0 = "<div class='templatemo-content-widget orange-bg'> <i class='fa fa-times' onclick='deleteServiceUrl("+obj.url+")'></i> <div class='media'> <div class='media-left'> <a href='#'> <img class='media-object img-circle' src='/images/sunset.jpg' alt='Sunset'></img> </a> </div> <div class='media-body'> <h2 class='media-heading text-uppercase'>设备类型 : "+obj.deviceType+"<br/><br/>描述 : "+obj.remark+"</h2> <a style='font-size: 30px;' href='"+obj.url+"'>"+obj.url+"</a> <div style='float: right;'> <button type='button' class='btn btn-default' aria-label='Left Align' onclick='firstChoiceUrl("+obj.id+")'> <span class='glyphicon glyphicon-arrow-up' aria-hidden='true'></span> </button> </div> </div> </div> </div>";
-                    var template1 = "<div class='templatemo-content-widget white-bg'><i class='fa fa-times' onclick='deleteServiceUrl("+obj.url+")'></i><div class='media'> <div class='media-left'> <a href='#'> <img class='media-object img-circle' src='/images/sunset.jpg'alt='Sunset'></img></img> </a> </div> <div class='media-body'> <h2 class='media-heading text-uppercase'>设备类型 : "+obj.deviceType+"<br/><br/>描述 : "+obj.remark+"</h2> <a style='font-size: 30px;'  href='"+obj.url+"'>"+obj.url+"</a> <div style='float: right;'> <button type='button' class='btn btn-default' aria-label='Left Align' onclick='firstChoiceUrl("+obj.id+")'> <span class='glyphicon glyphicon-arrow-up' aria-hidden='true'></span> </button> </div> </div> </div> </div>";
+                    var template0 = "<div class='templatemo-content-widget orange-bg'> <i class='fa fa-times' onclick='deleteServiceUrl(" + obj.url + ")'></i> <div class='media'> <div class='media-left'> <a href='#'> <img class='media-object img-circle' src='/images/sunset.jpg' alt='Sunset'></img> </a> </div> <div class='media-body'> <h2 class='media-heading text-uppercase'>设备类型 : " + obj.deviceType + "<br/><br/>描述 : " + obj.remark + "</h2> <a style='font-size: 30px;' href='" + obj.url + "'>" + obj.url + "</a> <div style='float: right;'> <button type='button' class='btn btn-default' aria-label='Left Align' onclick='firstChoiceUrl(" + obj.id + ")'> <span class='glyphicon glyphicon-arrow-up' aria-hidden='true'></span> </button> </div> </div> </div> </div>";
+                    var template1 = "<div class='templatemo-content-widget white-bg'><i class='fa fa-times' onclick='deleteServiceUrl(" + obj.url + ")'></i><div class='media'> <div class='media-left'> <a href='#'> <img class='media-object img-circle' src='/images/sunset.jpg'alt='Sunset'></img></img> </a> </div> <div class='media-body'> <h2 class='media-heading text-uppercase'>设备类型 : " + obj.deviceType + "<br/><br/>描述 : " + obj.remark + "</h2> <a style='font-size: 30px;'  href='" + obj.url + "'>" + obj.url + "</a> <div style='float: right;'> <button type='button' class='btn btn-default' aria-label='Left Align' onclick='firstChoiceUrl(" + obj.id + ")'> <span class='glyphicon glyphicon-arrow-up' aria-hidden='true'></span> </button> </div> </div> </div> </div>";
 
-                    if(i<=2)
-                        if(i%2==0 )
+                    if (i <= 2)
+                        if (i % 2 == 0)
                             $("#widget-url-list").append(template0);
                         else
                             $("#widget-url-list").append(template1);
@@ -277,12 +251,25 @@
             },
         })
     }
-    function resetInsert(){
+
+    function resetInsert(t) {
+
+        if (t == 'u') {
+            $("#u-remark").val("");
+            $("#u-service-url").val("");
+            layer.msg("好了 , 我清除更新表单了 /");
+            return false;
+        }
+
         $("#remark").val("");
         $("#service-url").val("");
+
+        if (t == undefined || t == null || t == '') {
+            layer.msg("好了 , 我清除表单了 /");
+        }
     }
 
-    function alertTopTip(type,msg){
+    function alertTopTip(type, msg) {
         toastr.options = {
             "closeButton": true,
             "debug": false,
@@ -297,56 +284,148 @@
             "showMethod": "fadeIn",
             "hideMethod": "fadeOut"
         }
-        if(type=='success'){
+        if (type == 'success') {
             toastr.success(msg);
         }
-        if(type=="error"){
+        if (type == "error") {
             toastr.error(msg);
         }
     }
 
-    function deleteServiceUrl(id){
-        if(confirm("你真的要删除这个?"))
-        {
-            alertTopTip("success","删除完毕 , 即将更新列表!");
-        }
-        else
-        {
-            alertTopTip("success","取消了删除!");
-        }
+    function findByOne(id) {
+        var data2 = {};
+        $.ajax({
+            url: 'findById-url',
+            type: 'POST', //GET
+            async: false,    //或false,是否异步
+            timeout: 5000,    //超时时间
+            data: {
+                'id': id
+            },
+            dataType: 'json',    //返回的数据格式：json/xml/html/script/jsonp/text
+            success: function (data, textStatus, jqXHR) {
+                console.log(data)
+                data2 = data;
+            },
+        });
+        return data2;
+    }
+    var updateWindowContext;
+
+    function alertUpdateWindow(id) {
+        console.log(id);
+        updateWindowContext = layer.open({
+            type: 1,
+            area: ['500px', '460px'],
+            shadeClose: true, //点击遮罩关闭
+            content: $("#edit-template"),
+        });
+
+        var serviceUrl = findByOne(id);
+        console.log(serviceUrl.url);
+        console.log(serviceUrl.remark);
+        console.log(serviceUrl.deviceType);
+
+        $("#u-remark").val(serviceUrl.remark);
+        $("#u-service-url").val(serviceUrl.url);
+        $("#u-deviceType").val(serviceUrl.deviceType);
+        $("#u-id").val(id);
     }
 
-    function firstChoiceUrl(id){
+
+
+    function updateServiceUrl() {
+
+        var remark = $("#u-remark").val();
+        var uServiceUrl = $("#u-service-url").val();
+        var uDeviceType = $("#u-deviceType").val();
+        var uId = $("#u-id").val();
+
         $.ajax({
-            url: 'set-upfirstchoice-url',
+            url: 'update-url',
             type: 'POST', //GET
             async: true,    //或false,是否异步
             timeout: 5000,    //超时时间
-            data:{
-                'id':id,
+            data: {
+                'id': uId,
+                'remark': remark,
+                'url': uServiceUrl,
+                'deviceType': uDeviceType
             },
-            dataType: 'text',    //返回的数据格式：json/xml/html/script/jsonp/text
+            dataType: 'json',    //返回的数据格式：json/xml/html/script/jsonp/text
             success: function (data, textStatus, jqXHR) {
                 console.log(data)
-                if(data='success'){
-                    alertTopTip("success","成功 , 即将刷新列表!");
+                if (data.code = 200) {
+                    alertTopTip("success", "成功更新 , 即将刷新列表!");
+                    resetInsert("y");
                     initUrlServiceList();
-                }else{
-                    alertTopTip("error","出现错误，检查网络或者联系管理员!");
+                    layer.close(updateWindowContext);
+
+                } else {
+                    alertTopTip("error", "出现错误，检查网络或者联系管理员!");
+                }
+            },
+        })
+    }
+
+    function deleteServiceUrl(id) {
+        if (confirm("你真的要删除这个?")) {
+
+            $.ajax({
+                url: 'delete-url',
+                type: 'POST', //GET
+                async: true,    //或false,是否异步
+                timeout: 5000,    //超时时间
+                data: {
+                    'id': id,
+                },
+                dataType: 'json',    //返回的数据格式：json/xml/html/script/jsonp/text
+                success: function (data, textStatus, jqXHR) {
+                    console.log(data.code)
+                    if (data.code = 200) {
+                        alertTopTip("success", "删除成功 !");
+                        initUrlServiceList();
+                    } else {
+                        alertTopTip("error", "出现错误，检查网络或者联系管理员!");
+                    }
+                },
+            })
+        }
+        else {
+            alertTopTip("success", "取消了删除!");
+        }
+    }
+
+    function firstChoiceUrl(id) {
+        $.ajax({
+            url: 'set-upChoice-url',
+            type: 'POST', //GET
+            async: true,    //或false,是否异步
+            timeout: 5000,    //超时时间
+            data: {
+                'id': id,
+            },
+            dataType: 'json',    //返回的数据格式：json/xml/html/script/jsonp/text
+            success: function (data, textStatus, jqXHR) {
+                console.log(data.code)
+                if (data.code = 200) {
+                    alertTopTip("success", "首选地址已经更新成功 . 重启APP . 即将刷新列表!");
+                    initUrlServiceList();
+                } else {
+                    alertTopTip("error", "出现错误，检查网络或者联系管理员!");
                 }
             },
         })
     }
 
 
-
-    function insertServiceUrl(){
+    function insertServiceUrl() {
         var remark = $("#remark").val();
         var url = $("#service-url").val();
-        var deviceType= $('input:radio[name="deviceType-radio"]:checked').val();
+        var deviceType = $('input:radio[name="deviceType-radio"]:checked').val();
 
-        if(url=='' || remark=='' || deviceType==''){
-            alertTopTip("error","出现错误，请更改 , (填写接口地址或描述)");
+        if (url == '' || remark == '' || deviceType == '') {
+            alertTopTip("error", "出现错误，请更改 , (填写接口地址或描述)");
             return false;
         }
         $.ajax({
@@ -354,20 +433,20 @@
             type: 'POST', //GET
             async: true,    //或false,是否异步
             timeout: 5000,    //超时时间
-            data:{
-                'remark':remark,
-                'url':url,
-                'deviceType':deviceType
+            data: {
+                'remark': remark,
+                'url': url,
+                'deviceType': deviceType
             },
             dataType: 'text',    //返回的数据格式：json/xml/html/script/jsonp/text
             success: function (data, textStatus, jqXHR) {
                 console.log(data)
-                if(data='success'){
-                    alertTopTip("success","成功 , 即将刷新列表!");
-                    resetInsert();
+                if (data = 'success') {
+                    alertTopTip("success", "成功 , 即将刷新列表!");
+                    resetInsert("y");
                     initUrlServiceList();
-                }else{
-                    alertTopTip("error","出现错误，检查网络或者联系管理员!");
+                } else {
+                    alertTopTip("error", "出现错误，检查网络或者联系管理员!");
                 }
             },
         })
@@ -375,4 +454,43 @@
 
 </script>
 </body>
+<div class="templatemo-content-widget white-bg col-2" id="edit-template" style="display: none;">
+    <div class="container-fluid">
+        <div class="row-fluid">
+            <div class="span12">
+                <form class="form-horizontal">
+                    <div class="control-group">
+                        <label class="control-label" for="u-service-url">接口前缀</label>
+                        <div class="controls">
+                            <input id="u-id" type="text" style="display: none;"/>
+                            <input id="u-service-url" type="text" size="30"/>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="u-remark">接口描述</label>
+                        <div class="controls">
+                            <input id="u-remark" type="text" size="30"/>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="u-deviceType">什么设备 ? </label>
+                        <div class="controls">
+                            <select id="u-deviceType">
+                                <option>Android</option>
+                                <option>IOS</option>
+                                <option>其他</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <div class="controls">
+                            <label class="checkbox"><input type="checkbox"/> 你这确定要去更新么?</label>
+                            <button type="button" class="btn" style="float: right;" onclick="updateServiceUrl()">更新</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 </html>

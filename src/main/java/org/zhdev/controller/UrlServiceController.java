@@ -10,6 +10,8 @@ import org.zhdev.entity.ServiceUrl;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @Author: zh
@@ -42,36 +44,76 @@ public class UrlServiceController {
     }
 
     @RequestMapping(value="findById-url")
-    public @ResponseBody  String insertUrl(Long id){
-        String response = "";
+    public @ResponseBody  ServiceUrl findById(Long id){
         ServiceUrl serviceUrl = repository.findOne(id);
-        if(null==serviceUrl){
-            return  "find nothing";
-        }
-        return serviceUrl.toString();
+        return serviceUrl;
     }
 
     @RequestMapping(value="list-url")
     public @ResponseBody Iterable<ServiceUrl> listUrl(){
-        Iterable<ServiceUrl> urlList = repository.findAll();
+        Iterable<ServiceUrl> urlList = repository.list();
         return urlList;
     }
 
     @RequestMapping(value="update-url")
-    public @ResponseBody String editUrl(ServiceUrl url){
-        Date nowDate = new Date();
-        url.setUpdateDate(nowDate);
-        url.setUpdateTime(sdf.format(nowDate));
-        repository.save(url);
-        return "edit url success";
+    public @ResponseBody Map<String,String> editUrl(ServiceUrl url){
+        int code = 200;
+        String msg = "success";
+        try{
+            Date nowDate = new Date();
+            url.setUpdateDate(nowDate);
+            url.setUpdateTime(sdf.format(nowDate));
+            repository.save(url);
+        }catch (Exception e){
+            code = 500;
+            msg = e.getMessage();
+            e.printStackTrace();
+        }
+        Map<String,String > response = new HashMap<String,String>();
+        response.put("code",String.valueOf(code));
+        response.put("msg",msg);
+
+        return response;
     }
 
-    @RequestMapping(value="set-upfirstchoice-url")//上升首选
-    public @ResponseBody String upFirstChoice(Long id){
-        ServiceUrl firstUrl = repository.findOne(id);
-        firstUrl.setId(0L);
-        repository.save(firstUrl);
-        return "success";
+    @RequestMapping(value="delete-url")
+    public @ResponseBody Map<String,String> deleteUrl(Long id){
+        int code = 200;
+        String msg = "success";
+        try{
+            repository.delete(id);
+        }catch (Exception e){
+            code = 500;
+            msg = e.getMessage();
+            e.printStackTrace();
+        }
+        Map<String,String > response = new HashMap<String,String>();
+        response.put("code",String.valueOf(code));
+        response.put("msg",msg);
+        return response;
+    }
+
+
+    @RequestMapping(value="set-upChoice-url")//上升首选
+    public @ResponseBody Map<String,String> upFirstChoice(Long id){
+        int code = 200;
+        String msg = "success";
+        try{
+            Date nowDate = new Date();
+            ServiceUrl firstUrl = repository.findOne(id);
+            firstUrl.setUpdateDate(nowDate);
+            firstUrl.setUpdateTime(sdf.format(nowDate));
+            repository.save(firstUrl);
+        }catch (Exception e){
+            code = 500;
+            msg = e.getMessage();
+            e.printStackTrace();
+        }
+        Map<String,String > response = new HashMap<String,String>();
+        response.put("code",String.valueOf(code));
+        response.put("msg",msg);
+
+        return response;
     }
 
 }

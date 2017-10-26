@@ -1,9 +1,9 @@
 package org.zhdev.entity;
 
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import org.hibernate.annotations.GenericGenerator;
+
+import javax.persistence.*;
 import java.util.Date;
 
 /**
@@ -13,10 +13,11 @@ import java.util.Date;
  * @Modified By :
  */
 @Entity
+@Table(name="service_url")
 public class ServiceUrl {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String url;
     private String deviceType;
